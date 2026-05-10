@@ -7,13 +7,14 @@
 <title>Verdadero o Falso Social</title>
 
 <style>
-
+/* RESET */
 *{
     margin:0;
     padding:0;
     box-sizing:border-box;
 }
 
+/* BODY */
 body{
     font-family:Arial, sans-serif;
     background:linear-gradient(135deg,#f3f4f6,#e8f5e9);
@@ -21,6 +22,7 @@ body{
     text-align:center;
 }
 
+/* CONTENEDOR */
 .contenedor{
     background:white;
     max-width:900px;
@@ -30,11 +32,13 @@ body{
     box-shadow:0 8px 25px rgba(0,0,0,0.15);
 }
 
+/* LOGO */
 .logo{
     width:90px;
     margin-bottom:10px;
 }
 
+/* TITULOS */
 h1{
     color:#198754;
     font-size:3rem;
@@ -47,6 +51,7 @@ h1{
     font-size:1.1rem;
 }
 
+/* CONTADOR */
 #contador{
     display:inline-block;
     background:#d1fae5;
@@ -58,6 +63,7 @@ h1{
     font-size:22px;
 }
 
+/* SCORE */
 .score-box{
     margin-top:15px;
     margin-bottom:25px;
@@ -66,6 +72,7 @@ h1{
     font-weight:bold;
 }
 
+/* PREGUNTA */
 #pregunta{
     background:#f8fff9;
     border:2px solid #c7f0d8;
@@ -79,6 +86,7 @@ h1{
     justify-content:center;
 }
 
+/* BOTONES */
 .botones{
     display:flex;
     gap:20px;
@@ -102,17 +110,14 @@ button:hover{
     transform:scale(1.05);
 }
 
-.verdadero{
-    background:#16a34a;
-}
+.verdadero{background:#16a34a;}
+.falso{background:#dc2626;}
+.compartir{background:#25D366;}
+.invitar{background:#7c3aed;}
+.reiniciar{background:#2563eb;}
 
-.falso{
-    background:#dc2626;
-}
-
-#resultado{
-    margin-top:20px;
-}
+/* RESULTADO */
+#resultado{margin-top:20px;}
 
 .caja-explicacion{
     background:#fff5f5;
@@ -130,6 +135,7 @@ button:hover{
     padding:14px 30px;
 }
 
+/* FINAL */
 .final{
     display:none;
     margin-top:30px;
@@ -146,18 +152,7 @@ button:hover{
     margin-bottom:25px;
 }
 
-.compartir{
-    background:#25D366;
-}
-
-.invitar{
-    background:#7c3aed;
-}
-
-.reiniciar{
-    background:#2563eb;
-}
-
+/* FOOTER */
 footer{
     margin-top:40px;
     background:#ecfdf5;
@@ -169,75 +164,29 @@ footer{
 
 /* RESPONSIVO móvil */
 @media(max-width:768px){
-
-    h1{
-        font-size:2rem;
-    }
-
-    #pregunta{
-        font-size:1.4rem;
-        padding:25px;
-    }
-
-    button{
-        width:100%;
-        font-size:1rem;
-    }
-
-    .final p{
-        font-size:1rem;
-    }
-
+    h1{font-size:2rem;}
+    #pregunta{font-size:1.4rem;padding:25px;}
+    button{width:100%;font-size:1rem;}
+    .final p{font-size:1rem;}
 }
 
 /* RESPONSIVO escritorio grande */
 @media(min-width:1024px){
-
-    h1{
-        font-size:2.2rem;
-    }
-
-    .subtitulo{
-        font-size:1rem;
-    }
-
-    #pregunta{
-        font-size:1.6rem;
-        padding:30px;
-        max-width:700px;
-        margin:auto;
-    }
-
-    button{
-        width:220px;
-        font-size:1.1rem;
-        padding:14px;
-    }
-
-    .score-box{
-        font-size:1.2rem;
-    }
-
-    .final h2{
-        font-size:2rem;
-    }
-
-    .final p{
-        font-size:1.2rem;
-    }
+    h1{font-size:2.2rem;}
+    .subtitulo{font-size:1rem;}
+    #pregunta{font-size:1.6rem;padding:30px;max-width:700px;margin:auto;}
+    button{width:220px;font-size:1.1rem;padding:14px;}
+    .score-box{font-size:1.2rem;}
+    .final h2{font-size:2rem;}
+    .final p{font-size:1.2rem;}
 }
-
 </style>
 </head>
 
 <body>
-
 <div class="contenedor">
 
-    <img 
-    src="https://i.postimg.cc/FKz4sz2C/logoutelsinfondo.png"
-    class="logo"
-    alt="UTEL">
+    <img src="https://i.postimg.cc/FKz4sz2C/logoutelsinfondo.png" class="logo" alt="UTEL">
 
     <h1>🎮 Verdadero o Falso Social</h1>
 
@@ -245,133 +194,84 @@ footer{
         Analiza cada afirmación y demuestra cuánto sabes sobre realidad social.
     </div>
 
-    <div id="contador">
-        Pregunta 1 de 5
-    </div>
+    <div id="contador">Pregunta 1 de 5</div>
 
-    <div class="score-box">
-        ⭐ Score: <span id="score">0</span>
-    </div>
+    <div class="score-box">⭐ Score: <span id="score">0</span></div>
 
     <div id="pregunta"></div>
 
     <div class="botones" id="botones">
-
-        <button class="verdadero" onclick="responder(true)">
-            ✅ Verdadero
-        </button>
-
-        <button class="falso" onclick="responder(false)">
-            ❌ Falso
-        </button>
-
+        <button class="verdadero" onclick="responder(true)">✅ Verdadero</button>
+        <button class="falso" onclick="responder(false)">❌ Falso</button>
     </div>
 
     <div id="resultado"></div>
 
     <!-- FINAL -->
-
     <div class="final" id="final">
-
         <h2>🎉 Juego terminado</h2>
-
         <p id="mensajeFinal"></p>
-
         <div class="botones">
-
-            <button class="compartir" onclick="compartirWhatsApp()">
-                📲 Compartir resultado
-            </button>
-
-            <button class="invitar" onclick="invitarAmigo()">
-                🚀 Invitar amigo
-            </button>
-
-            <button class="reiniciar" onclick="location.reload()">
-                🔄 Jugar otra vez
-            </button>
-
+            <button class="compartir" onclick="compartirWhatsApp()">📲 Compartir resultado</button>
+            <button class="invitar" onclick="invitarAmigo()">🚀 Invitar amigo</button>
+            <button class="reiniciar" onclick="location.reload()">🔄 Jugar otra vez</button>
         </div>
-
     </div>
 
-    <footer>
-        Semana 3 | Docente UTEL | Dr. Armando Maravilla
-    </footer>
-
+    <footer>Semana 3 | Docente UTEL | Dr. Armando Maravilla</footer>
 </div>
 
 <script>
-
+/* PREGUNTAS */
 const preguntas = [
-{
-texto:"La sociología estudia los fenómenos sociales.",
-respuesta:true,
-explicacion:"La sociología sí estudia los fenómenos sociales y el comportamiento humano."
-},
-{
-texto:"El análisis cronológico estudia relaciones entre amigos.",
-respuesta:false,
-explicacion:"El análisis cronológico estudia hechos a través del tiempo."
-},
-{
-texto:"El análisis sociométrico estudia relaciones dentro de un grupo.",
-respuesta:true,
-explicacion:"Este método analiza relaciones e interacciones sociales."
-},
-{
-texto:"El análisis de ruptura estudia cambios históricos importantes.",
-respuesta:true,
-explicacion:"Analiza cambios profundos que transforman la sociedad."
-},
-{
-texto:"Las redes sociales no influyen en la opinión pública.",
-respuesta:false,
-explicacion:"Las redes sociales sí pueden influir en la opinión pública."
-}
+{texto:"La sociología estudia los fenómenos sociales.",respuesta:true,explicacion:"La sociología sí estudia los fenómenos sociales y el comportamiento humano."},
+{texto:"El análisis cronológico estudia relaciones entre amigos.",respuesta:false,explicacion:"El análisis cronológico estudia hechos a través del tiempo."},
+{texto:"El análisis sociométrico estudia relaciones dentro de un grupo.",respuesta:true,explicacion:"Este método analiza relaciones e interacciones sociales."},
+{texto:"El análisis de ruptura estudia cambios históricos importantes.",respuesta:true,explicacion:"Analiza cambios profundos que transforman la sociedad."},
+{texto:"Las redes sociales no influyen en la opinión pública.",respuesta:false,explicacion:"Las redes sociales sí pueden influir en la opinión pública."}
 ];
 
-let actual = 0;
-let puntos = 0;
+let actual=0; 
+let puntos=0;
 
+/* CARGAR PREGUNTA */
 function cargarPregunta(){
-    document.getElementById("pregunta").innerHTML = preguntas[actual].texto;
-    document.getElementById("contador").innerHTML = "Pregunta " + (actual + 1) + " de " + preguntas.length;
-    document.getElementById("resultado").innerHTML = "";
+    document.getElementById("pregunta").innerHTML=preguntas[actual].texto;
+    document.getElementById("contador").innerHTML="Pregunta "+(actual+1)+" de "+preguntas.length;
+    document.getElementById("resultado").innerHTML="";
 }
 
+/* RESPONDER */
 function responder(opcion){
-    const correcta = preguntas[actual].respuesta;
-    if(opcion === correcta){ puntos++; }
-    document.getElementById("score").innerHTML = puntos;
-    document.getElementById("resultado").innerHTML = `
+    const correcta=preguntas[actual].respuesta;
+    if(opcion===correcta){puntos++;}
+    document.getElementById("score").innerHTML=puntos;
+    document.getElementById("resultado").innerHTML=`
         <div class="caja-explicacion">
-            ${preguntas[actual].explicacion}
-            <br>
+            ${preguntas[actual].explicacion}<br>
             <button class="btn-continuar" onclick="continuar()">➡️ Continuar</button>
-        </div>
-    `;
-    document.querySelector(".verdadero").disabled = true;
-    document.querySelector(".falso").disabled = true;
+        </div>`;
+    document.querySelector(".verdadero").disabled=true;
+    document.querySelector(".falso").disabled=true;
 }
 
+/* CONTINUAR */
 function continuar(){
     actual++;
-    document.querySelector(".verdadero").disabled = false;
-    document.querySelector(".falso").disabled = false;
-    if(actual < preguntas.length){ cargarPregunta(); }
-    else{ finalizarJuego(); }
+    document.querySelector(".verdadero").disabled=false;
+    document.querySelector(".falso").disabled=false;
+    if(actual<preguntas.length){cargarPregunta();}
+    else{finalizarJuego();}
 }
 
+/* FINALIZAR */
 function finalizarJuego(){
-    document.getElementById("pregunta").style.display = "none";
-    document.getElementById("botones").style.display = "none";
-    document.getElementById("resultado").innerHTML = "";
-    document.getElementById("contador").innerHTML = "Finalizado";
-    let mensaje = "";
-    if(puntos == 5){
-        mensaje = "🏆 ¡Excelente! Obtuviste un score perfecto de " + puntos + "/5";
-    }else if(puntos >=3){
-        mensaje = "👏 ¡Muy bien! Tu score fue de " + puntos + "/5";
-    }else{
-        mensaje = "💡 Puedes volver a intentarlo. Score: " + puntos + "/5";
+    document.getElementById("pregunta").style.display="none";
+    document.getElementById("botones").style.display="none";
+    document.getElementById("resultado").innerHTML="";
+    document.getElementById("contador").innerHTML="Finalizado";
+    let mensaje="";
+    if(puntos==5){mensaje="🏆 ¡Excelente! Obtuviste un score perfecto de "+puntos+"/5";}
+    else if(puntos>=3){mensaje="👏 ¡Muy bien! Tu score fue de "+puntos+"/5";}
+    else{mensaje="💡 Puedes volver a intentarlo. Score: "+puntos+"/5";}
+    document.get
