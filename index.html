@@ -167,8 +167,7 @@ footer{
     font-size:1.1rem;
 }
 
-/* RESPONSIVO */
-
+/* RESPONSIVO móvil */
 @media(max-width:768px){
 
     h1{
@@ -189,6 +188,43 @@ footer{
         font-size:1rem;
     }
 
+}
+
+/* RESPONSIVO escritorio grande */
+@media(min-width:1024px){
+
+    h1{
+        font-size:2.2rem;
+    }
+
+    .subtitulo{
+        font-size:1rem;
+    }
+
+    #pregunta{
+        font-size:1.6rem;
+        padding:30px;
+        max-width:700px;
+        margin:auto;
+    }
+
+    button{
+        width:220px;
+        font-size:1.1rem;
+        padding:14px;
+    }
+
+    .score-box{
+        font-size:1.2rem;
+    }
+
+    .final h2{
+        font-size:2rem;
+    }
+
+    .final p{
+        font-size:1.2rem;
+    }
 }
 
 </style>
@@ -268,179 +304,74 @@ footer{
 <script>
 
 const preguntas = [
-
 {
 texto:"La sociología estudia los fenómenos sociales.",
 respuesta:true,
 explicacion:"La sociología sí estudia los fenómenos sociales y el comportamiento humano."
 },
-
 {
 texto:"El análisis cronológico estudia relaciones entre amigos.",
 respuesta:false,
 explicacion:"El análisis cronológico estudia hechos a través del tiempo."
 },
-
 {
 texto:"El análisis sociométrico estudia relaciones dentro de un grupo.",
 respuesta:true,
 explicacion:"Este método analiza relaciones e interacciones sociales."
 },
-
 {
 texto:"El análisis de ruptura estudia cambios históricos importantes.",
 respuesta:true,
 explicacion:"Analiza cambios profundos que transforman la sociedad."
 },
-
 {
 texto:"Las redes sociales no influyen en la opinión pública.",
 respuesta:false,
 explicacion:"Las redes sociales sí pueden influir en la opinión pública."
 }
-
 ];
 
 let actual = 0;
 let puntos = 0;
 
 function cargarPregunta(){
-
-    document.getElementById("pregunta").innerHTML =
-    preguntas[actual].texto;
-
-    document.getElementById("contador").innerHTML =
-    "Pregunta " + (actual + 1) + " de " + preguntas.length;
-
+    document.getElementById("pregunta").innerHTML = preguntas[actual].texto;
+    document.getElementById("contador").innerHTML = "Pregunta " + (actual + 1) + " de " + preguntas.length;
     document.getElementById("resultado").innerHTML = "";
-
 }
 
 function responder(opcion){
-
     const correcta = preguntas[actual].respuesta;
-
-    if(opcion === correcta){
-
-        puntos++;
-
-    }
-
+    if(opcion === correcta){ puntos++; }
     document.getElementById("score").innerHTML = puntos;
-
     document.getElementById("resultado").innerHTML = `
-
         <div class="caja-explicacion">
-
             ${preguntas[actual].explicacion}
-
             <br>
-
-            <button class="btn-continuar"
-            onclick="continuar()">
-                ➡️ Continuar
-            </button>
-
+            <button class="btn-continuar" onclick="continuar()">➡️ Continuar</button>
         </div>
-
     `;
-
     document.querySelector(".verdadero").disabled = true;
     document.querySelector(".falso").disabled = true;
-
 }
 
 function continuar(){
-
     actual++;
-
     document.querySelector(".verdadero").disabled = false;
     document.querySelector(".falso").disabled = false;
-
-    if(actual < preguntas.length){
-
-        cargarPregunta();
-
-    }else{
-
-        finalizarJuego();
-
-    }
-
+    if(actual < preguntas.length){ cargarPregunta(); }
+    else{ finalizarJuego(); }
 }
 
 function finalizarJuego(){
-
     document.getElementById("pregunta").style.display = "none";
-
     document.getElementById("botones").style.display = "none";
-
     document.getElementById("resultado").innerHTML = "";
-
-    document.getElementById("contador").innerHTML =
-    "Finalizado";
-
+    document.getElementById("contador").innerHTML = "Finalizado";
     let mensaje = "";
-
     if(puntos == 5){
-
-        mensaje =
-        "🏆 ¡Excelente! Obtuviste un score perfecto de " +
-        puntos + "/5";
-
+        mensaje = "🏆 ¡Excelente! Obtuviste un score perfecto de " + puntos + "/5";
     }else if(puntos >=3){
-
-        mensaje =
-        "👏 ¡Muy bien! Tu score fue de " +
-        puntos + "/5";
-
+        mensaje = "👏 ¡Muy bien! Tu score fue de " + puntos + "/5";
     }else{
-
-        mensaje =
-        "💡 Puedes volver a intentarlo. Score: " +
-        puntos + "/5";
-
-    }
-
-    document.getElementById("mensajeFinal").innerHTML =
-    mensaje;
-
-    document.getElementById("final").style.display =
-    "block";
-
-}
-
-function compartirWhatsApp(){
-
-    const texto =
-    "🎮 Obtuve un score de " +
-    puntos +
-    "/5 en Verdadero o Falso Social 📚 ¿Puedes superarme?";
-
-    const url =
-    "https://wa.me/?text=" +
-    encodeURIComponent(texto);
-
-    window.open(url,"_blank");
-
-}
-
-function invitarAmigo(){
-
-    const texto =
-    "🚀 Te invito a jugar Verdadero o Falso Social 🎮";
-
-    const url =
-    "https://wa.me/?text=" +
-    encodeURIComponent(texto);
-
-    window.open(url,"_blank");
-
-}
-
-cargarPregunta();
-
-</script>
-
-</body>
-</html>
+        mensaje = "💡 Puedes volver a intentarlo. Score: " + puntos + "/5";
