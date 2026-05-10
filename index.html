@@ -1,446 +1,114 @@
-<!DOCTYPE html>
-<html lang="es">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<title>Verdadero o Falso Social</title>
-
-<style>
-
-*{
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
-}
-
-body{
-    font-family:Arial, sans-serif;
-    background:linear-gradient(135deg,#f3f4f6,#e8f5e9);
-    padding:20px;
-    text-align:center;
-}
-
-.contenedor{
-    background:white;
-    max-width:900px;
-    margin:auto;
-    border-radius:25px;
-    padding:25px;
-    box-shadow:0 8px 25px rgba(0,0,0,0.15);
-}
-
-.logo{
-    width:90px;
-    margin-bottom:10px;
-}
-
-h1{
-    color:#198754;
-    font-size:3rem;
-    margin-bottom:10px;
-}
-
-.subtitulo{
-    color:#666;
-    margin-bottom:25px;
-    font-size:1.1rem;
-}
-
-#contador{
-    display:inline-block;
-    background:#d1fae5;
-    color:#065f46;
-    padding:10px 20px;
-    border-radius:50px;
-    font-weight:bold;
-    margin-bottom:20px;
-    font-size:22px;
-}
-
-.score-box{
-    margin-top:15px;
-    margin-bottom:25px;
-    font-size:1.4rem;
-    color:#198754;
-    font-weight:bold;
-}
-
-#pregunta{
-    background:#f8fff9;
-    border:2px solid #c7f0d8;
-    border-radius:20px;
-    padding:40px;
-    font-size:2rem;
-    margin-bottom:25px;
-    min-height:160px;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-}
-
-.botones{
-    display:flex;
-    gap:20px;
-    justify-content:center;
-    flex-wrap:wrap;
-}
-
-button{
-    border:none;
-    border-radius:15px;
-    padding:18px;
-    width:280px;
-    font-size:1.3rem;
-    color:white;
-    cursor:pointer;
-    transition:0.3s;
-    font-weight:bold;
-}
-
-button:hover{
-    transform:scale(1.05);
-}
-
-.verdadero{
-    background:#16a34a;
-}
-
-.falso{
-    background:#dc2626;
-}
-
-#resultado{
-    margin-top:20px;
-}
-
-.caja-explicacion{
-    background:#fff5f5;
-    border:3px solid #fca5a5;
-    border-radius:20px;
-    padding:25px;
-    font-size:1.2rem;
-    line-height:1.7;
-}
-
-.btn-continuar{
-    background:#2563eb;
-    margin-top:20px;
-    width:auto;
-    padding:14px 30px;
-}
-
-.final{
-    display:none;
-    margin-top:30px;
-}
-
-.final h2{
-    color:#198754;
-    font-size:2.5rem;
-    margin-bottom:15px;
-}
-
-.final p{
-    font-size:1.4rem;
-    margin-bottom:25px;
-}
-
-.compartir{
-    background:#25D366;
-}
-
-.invitar{
-    background:#7c3aed;
-}
-
-.reiniciar{
-    background:#2563eb;
-}
-
-footer{
-    margin-top:40px;
-    background:#ecfdf5;
-    padding:18px;
-    border-radius:15px;
-    color:#444;
-    font-size:1.1rem;
-}
-
-/* RESPONSIVO */
-
-@media(max-width:768px){
-
-    h1{
-        font-size:2rem;
-    }
-
-    #pregunta{
-        font-size:1.4rem;
-        padding:25px;
-    }
-
-    button{
-        width:100%;
-        font-size:1rem;
-    }
-
-    .final p{
-        font-size:1rem;
-    }
-
-}
-
-</style>
-</head>
-
-<body>
-
-<div class="contenedor">
-
-    <img 
-    src="https://i.postimg.cc/FKz4sz2C/logoutelsinfondo.png"
-    class="logo"
-    alt="UTEL">
-
-    <h1>🎮 Verdadero o Falso Social</h1>
-
-    <div class="subtitulo">
-        Analiza cada afirmación y demuestra cuánto sabes sobre realidad social.
-    </div>
-
-    <div id="contador">
-        Pregunta 1 de 5
-    </div>
-
-    <div class="score-box">
-        ⭐ Score: <span id="score">0</span>
-    </div>
-
-    <div id="pregunta"></div>
-
-    <div class="botones" id="botones">
-
-        <button class="verdadero" onclick="responder(true)">
-            ✅ Verdadero
-        </button>
-
-        <button class="falso" onclick="responder(false)">
-            ❌ Falso
-        </button>
-
-    </div>
-
-    <div id="resultado"></div>
-
-    <!-- FINAL -->
-
-    <div class="final" id="final">
-
-        <h2>🎉 Juego terminado</h2>
-
-        <p id="mensajeFinal"></p>
-
-        <div class="botones">
-
-            <button class="compartir" onclick="compartirWhatsApp()">
-                📲 Compartir resultado
-            </button>
-
-            <button class="invitar" onclick="invitarAmigo()">
-                🚀 Invitar amigo
-            </button>
-
-            <button class="reiniciar" onclick="location.reload()">
-                🔄 Jugar otra vez
-            </button>
-
-        </div>
-
-    </div>
-
-    <footer>
-        Semana 3 | Docente UTEL | Dr. Armando Maravilla
-    </footer>
-
-</div>
-
 <script>
-
 const preguntas = [
-
-{
-texto:"La sociología estudia los fenómenos sociales.",
-respuesta:true,
-explicacion:"La sociología sí estudia los fenómenos sociales y el comportamiento humano."
-},
-
-{
-texto:"El análisis cronológico estudia relaciones entre amigos.",
-respuesta:false,
-explicacion:"El análisis cronológico estudia hechos a través del tiempo."
-},
-
-{
-texto:"El análisis sociométrico estudia relaciones dentro de un grupo.",
-respuesta:true,
-explicacion:"Este método analiza relaciones e interacciones sociales."
-},
-
-{
-texto:"El análisis de ruptura estudia cambios históricos importantes.",
-respuesta:true,
-explicacion:"Analiza cambios profundos que transforman la sociedad."
-},
-
-{
-texto:"Las redes sociales no influyen en la opinión pública.",
-respuesta:false,
-explicacion:"Las redes sociales sí pueden influir en la opinión pública."
-}
-
+    {
+        texto: "La sociología estudia los fenómenos sociales.",
+        respuesta: true,
+        explicacion: "La sociología sí estudia los fenómenos sociales y el comportamiento humano."
+    },
+    {
+        texto: "El análisis cronológico estudia relaciones entre amigos.",
+        respuesta: false,
+        explicacion: "El análisis cronológico estudia hechos a través del tiempo."
+    },
+    {
+        texto: "El análisis sociométrico estudia relaciones dentro de un grupo.",
+        respuesta: true,
+        explicacion: "Este método analiza relaciones e interacciones sociales."
+    },
+    {
+        texto: "El análisis de ruptura estudia cambios históricos importantes.",
+        respuesta: true,
+        explicacion: "Analiza cambios profundos que transforman la sociedad."
+    },
+    {
+        texto: "Las redes sociales no influyen en la opinión pública.",
+        respuesta: false,
+        explicacion: "Las redes sociales sí pueden influir en la opinión pública."
+    }
 ];
 
 let actual = 0;
 let puntos = 0;
 
-function cargarPregunta(){
+const btnVerdadero = document.querySelector(".verdadero");
+const btnFalso = document.querySelector(".falso");
+const divPregunta = document.getElementById("pregunta");
+const divContador = document.getElementById("contador");
+const divScore = document.getElementById("score");
+const divResultado = document.getElementById("resultado");
+const divBotones = document.getElementById("botones");
+const divFinal = document.getElementById("final");
 
-    document.getElementById("pregunta").innerHTML =
-    preguntas[actual].texto;
-
-    document.getElementById("contador").innerHTML =
-    "Pregunta " + (actual + 1) + " de " + preguntas.length;
-
-    document.getElementById("resultado").innerHTML = "";
-
+function cargarPregunta() {
+    divPregunta.innerHTML = preguntas[actual].texto;
+    divContador.innerHTML = `Pregunta ${actual + 1} de ${preguntas.length}`;
+    divResultado.innerHTML = "";
 }
 
-function responder(opcion){
-
+function responder(opcion) {
     const correcta = preguntas[actual].respuesta;
-
-    if(opcion === correcta){
-
+    
+    if (opcion === correcta) {
         puntos++;
-
+        divScore.innerHTML = puntos;
     }
 
-    document.getElementById("score").innerHTML = puntos;
-
-    document.getElementById("resultado").innerHTML = `
-
+    divResultado.innerHTML = `
         <div class="caja-explicacion">
-
             ${preguntas[actual].explicacion}
-
-            <br>
-
-            <button class="btn-continuar"
-            onclick="continuar()">
+            <br><br>
+            <button class="btn-continuar" onclick="continuar()">
                 ➡️ Continuar
             </button>
-
         </div>
-
     `;
 
-    document.querySelector(".verdadero").disabled = true;
-    document.querySelector(".falso").disabled = true;
-
+    btnVerdadero.disabled = true;
+    btnFalso.disabled = true;
 }
 
-function continuar(){
-
+function continuar() {
     actual++;
+    
+    btnVerdadero.disabled = false;
+    btnFalso.disabled = false;
 
-    document.querySelector(".verdadero").disabled = false;
-    document.querySelector(".falso").disabled = false;
-
-    if(actual < preguntas.length){
-
+    if (actual < preguntas.length) {
         cargarPregunta();
-
-    }else{
-
+    } else {
         finalizarJuego();
-
     }
-
 }
 
-function finalizarJuego(){
-
-    document.getElementById("pregunta").style.display = "none";
-
-    document.getElementById("botones").style.display = "none";
-
-    document.getElementById("resultado").innerHTML = "";
-
-    document.getElementById("contador").innerHTML =
-    "Finalizado";
+function finalizarJuego() {
+    divPregunta.style.display = "none";
+    divBotones.style.display = "none";
+    divResultado.innerHTML = "";
+    divContador.innerHTML = "Finalizado";
 
     let mensaje = "";
-
-    if(puntos == 5){
-
-        mensaje =
-        "🏆 ¡Excelente! Obtuviste un score perfecto de " +
-        puntos + "/5";
-
-    }else if(puntos >=3){
-
-        mensaje =
-        "👏 ¡Muy bien! Tu score fue de " +
-        puntos + "/5";
-
-    }else{
-
-        mensaje =
-        "💡 Puedes volver a intentarlo. Score: " +
-        puntos + "/5";
-
+    if (puntos === 5) {
+        mensaje = `🏆 ¡Excelente! Obtuviste un score perfecto de ${puntos}/5`;
+    } else if (puntos >= 3) {
+        mensaje = `👏 ¡Muy bien! Tu score fue de ${puntos}/5`;
+    } else {
+        mensaje = `💡 Puedes volver a intentarlo. Score: ${puntos}/5`;
     }
 
-    document.getElementById("mensajeFinal").innerHTML =
-    mensaje;
-
-    document.getElementById("final").style.display =
-    "block";
-
+    document.getElementById("mensajeFinal").innerHTML = mensaje;
+    divFinal.style.display = "block";
 }
 
-function compartirWhatsApp(){
-
-    const texto =
-    "🎮 Obtuve un score de " +
-    puntos +
-    "/5 en Verdadero o Falso Social 📚 ¿Puedes superarme?";
-
-    const url =
-    "https://wa.me/?text=" +
-    encodeURIComponent(texto);
-
-    window.open(url,"_blank");
-
+function compartirWhatsApp() {
+    const texto = `🎮 Obtuve un score de ${puntos}/5 en Verdadero o Falso Social 📚 ¿Puedes superarme?`;
+    window.open(`https://wa.me/?text=${encodeURIComponent(texto)}`, "_blank");
 }
 
-function invitarAmigo(){
-
-    const texto =
-    "🚀 Te invito a jugar Verdadero o Falso Social 🎮";
-
-    const url =
-    "https://wa.me/?text=" +
-    encodeURIComponent(texto);
-
-    window.open(url,"_blank");
-
+function invitarAmigo() {
+    const texto = "🚀 Te invito a jugar Verdadero o Falso Social 🎮";
+    window.open(`https://wa.me/?text=${encodeURIComponent(texto)}`, "_blank");
 }
 
+// Iniciar
 cargarPregunta();
-
 </script>
-
-</body>
-</html>
