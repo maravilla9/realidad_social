@@ -6,272 +6,522 @@
 
 <title>Verdadero o Falso Social</title>
 
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
 <style>
-/* RESET */
+
 *{
     margin:0;
     padding:0;
     box-sizing:border-box;
 }
 
-/* BODY */
 body{
-    font-family:Arial, sans-serif;
-    background:linear-gradient(135deg,#f3f4f6,#e8f5e9);
-    padding:20px;
-    text-align:center;
+    font-family:'Inter',sans-serif;
+    background:#f4f7f5;
+    min-height:100vh;
+    padding:30px 15px;
+    color:#1f2937;
 }
 
-/* CONTENEDOR */
-.contenedor{
-    background:white;
-    max-width:900px;
+.card{
+    width:100%;
+    max-width:780px;
     margin:auto;
-    border-radius:25px;
-    padding:25px;
-    box-shadow:0 8px 25px rgba(0,0,0,0.15);
+    background:white;
+    border-radius:24px;
+    padding:28px;
+    box-shadow:
+    0 10px 30px rgba(0,0,0,0.08);
 }
 
-/* LOGO */
+/* HEADER */
+
 .logo{
-    width:90px;
+    width:70px;
+    display:block;
+    margin:auto;
     margin-bottom:10px;
 }
 
-/* TITULOS */
-h1{
-    color:#198754;
-    font-size:3rem;
-    margin-bottom:10px;
+.header{
+    text-align:center;
+    margin-bottom:28px;
 }
 
-.subtitulo{
-    color:#666;
-    margin-bottom:25px;
-    font-size:1.1rem;
+.header h1{
+    font-size:2.2rem;
+    color:#15803d;
+    font-weight:700;
+    margin-bottom:8px;
 }
 
-/* CONTADOR */
-#contador{
-    display:inline-block;
-    background:#d1fae5;
-    color:#065f46;
-    padding:10px 20px;
-    border-radius:50px;
-    font-weight:bold;
-    margin-bottom:20px;
-    font-size:22px;
+.header p{
+    color:#6b7280;
+    font-size:0.98rem;
 }
 
-/* SCORE */
-.score-box{
-    margin-top:15px;
-    margin-bottom:25px;
-    font-size:1.4rem;
-    color:#198754;
-    font-weight:bold;
+/* TOP INFO */
+
+.top{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    gap:10px;
+    margin-bottom:24px;
+    flex-wrap:wrap;
 }
 
-/* PREGUNTA */
-#pregunta{
-    background:#f8fff9;
-    border:2px solid #c7f0d8;
-    border-radius:20px;
-    padding:40px;
-    font-size:2rem;
-    margin-bottom:25px;
+.badge{
+    background:#ecfdf3;
+    color:#166534;
+    padding:10px 18px;
+    border-radius:999px;
+    font-size:0.95rem;
+    font-weight:600;
+}
+
+.score{
+    font-weight:700;
+    color:#15803d;
+}
+
+/* QUESTION */
+
+.question{
+    background:#f8faf8;
+    border:1px solid #d1fae5;
+    border-radius:18px;
+    padding:40px 30px;
+    text-align:center;
+    margin-bottom:24px;
     min-height:160px;
     display:flex;
     align-items:center;
     justify-content:center;
 }
 
-/* BOTONES */
-.botones{
-    display:flex;
-    gap:20px;
-    justify-content:center;
-    flex-wrap:wrap;
+.question h2{
+    font-size:1.65rem;
+    line-height:1.5;
+    font-weight:600;
 }
 
-button{
+/* BUTTONS */
+
+.actions{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:16px;
+}
+
+.btn{
     border:none;
-    border-radius:15px;
-    padding:18px;
-    width:280px;
-    font-size:1.3rem;
-    color:white;
+    border-radius:16px;
+    padding:16px;
+    font-size:1rem;
+    font-weight:600;
     cursor:pointer;
-    transition:0.3s;
-    font-weight:bold;
+    transition:0.2s ease;
+    color:white;
 }
 
-button:hover{
-    transform:scale(1.05);
+.btn:hover{
+    transform:translateY(-2px);
 }
 
-.verdadero{background:#16a34a;}
-.falso{background:#dc2626;}
-.compartir{background:#25D366;}
-.invitar{background:#7c3aed;}
-.reiniciar{background:#2563eb;}
-
-/* RESULTADO */
-#resultado{margin-top:20px;}
-
-.caja-explicacion{
-    background:#fff5f5;
-    border:3px solid #fca5a5;
-    border-radius:20px;
-    padding:25px;
-    font-size:1.2rem;
-    line-height:1.7;
+.true{
+    background:#16a34a;
 }
 
-.btn-continuar{
-    background:#2563eb;
+.false{
+    background:#dc2626;
+}
+
+/* FEEDBACK */
+
+.feedback{
     margin-top:20px;
-    width:auto;
-    padding:14px 30px;
+}
+
+.feedback-box{
+    border-radius:16px;
+    padding:18px;
+    text-align:left;
+    font-size:0.98rem;
+    line-height:1.7;
+    border:1px solid #e5e7eb;
+    background:#fafafa;
+}
+
+.feedback-title{
+    font-weight:700;
+    margin-bottom:6px;
+}
+
+.next-btn{
+    margin-top:15px;
+    background:#2563eb;
+    color:white;
+    border:none;
+    padding:12px 18px;
+    border-radius:12px;
+    cursor:pointer;
+    font-weight:600;
 }
 
 /* FINAL */
+
 .final{
     display:none;
-    margin-top:30px;
+    text-align:center;
+    margin-top:20px;
 }
 
 .final h2{
-    color:#198754;
-    font-size:2.5rem;
-    margin-bottom:15px;
+    color:#15803d;
+    margin-bottom:10px;
 }
 
 .final p{
-    font-size:1.4rem;
-    margin-bottom:25px;
+    color:#4b5563;
+    margin-bottom:24px;
+}
+
+.final-actions{
+    display:grid;
+    grid-template-columns:1fr 1fr 1fr;
+    gap:12px;
+}
+
+.share{
+    background:#25D366;
+}
+
+.invite{
+    background:#7c3aed;
+}
+
+.restart{
+    background:#2563eb;
 }
 
 /* FOOTER */
-footer{
-    margin-top:40px;
-    background:#ecfdf5;
-    padding:18px;
-    border-radius:15px;
-    color:#444;
-    font-size:1.1rem;
+
+.footer{
+    margin-top:30px;
+    text-align:center;
+    font-size:0.92rem;
+    color:#6b7280;
+    padding-top:20px;
+    border-top:1px solid #e5e7eb;
 }
 
-/* RESPONSIVO móvil */
-@media(max-width:768px){
-    h1{font-size:2rem;}
-    #pregunta{font-size:1.4rem;padding:25px;}
-    button{width:100%;font-size:1rem;}
-    .final p{font-size:1rem;}
+/* MOBILE */
+
+@media(max-width:700px){
+
+    .card{
+        padding:20px;
+    }
+
+    .header h1{
+        font-size:1.8rem;
+    }
+
+    .question{
+        padding:30px 20px;
+        min-height:140px;
+    }
+
+    .question h2{
+        font-size:1.25rem;
+    }
+
+    .actions{
+        grid-template-columns:1fr;
+    }
+
+    .final-actions{
+        grid-template-columns:1fr;
+    }
+
 }
 
-/* RESPONSIVO escritorio grande */
-@media(min-width:1024px){
-    h1{font-size:2.2rem;}
-    .subtitulo{font-size:1rem;}
-    #pregunta{font-size:1.6rem;padding:30px;max-width:700px;margin:auto;}
-    button{width:220px;font-size:1.1rem;padding:14px;}
-    .score-box{font-size:1.2rem;}
-    .final h2{font-size:2rem;}
-    .final p{font-size:1.2rem;}
-}
 </style>
 </head>
 
 <body>
-<div class="contenedor">
 
-    <img src="https://i.postimg.cc/FKz4sz2C/logoutelsinfondo.png" class="logo" alt="UTEL">
+<div class="card">
 
-    <h1>🎮 Verdadero o Falso Social</h1>
+    <img 
+    src="https://i.postimg.cc/FKz4sz2C/logoutelsinfondo.png"
+    class="logo"
+    alt="UTEL">
 
-    <div class="subtitulo">
-        Analiza cada afirmación y demuestra cuánto sabes sobre realidad social.
+    <div class="header">
+
+        <h1>🎮 Verdadero o Falso Social</h1>
+
+        <p>
+            Analiza cada afirmación y demuestra cuánto sabes sobre realidad social.
+        </p>
+
     </div>
 
-    <div id="contador">Pregunta 1 de 5</div>
+    <div class="top">
 
-    <div class="score-box">⭐ Score: <span id="score">0</span></div>
+        <div class="badge" id="contador">
+            Pregunta 1 de 5
+        </div>
 
-    <div id="pregunta"></div>
+        <div class="score">
+            ⭐ Score: <span id="score">0</span>
+        </div>
 
-    <div class="botones" id="botones">
-        <button class="verdadero" onclick="responder(true)">✅ Verdadero</button>
-        <button class="falso" onclick="responder(false)">❌ Falso</button>
     </div>
 
-    <div id="resultado"></div>
+    <div class="question" id="questionBox">
+
+        <h2 id="pregunta"></h2>
+
+    </div>
+
+    <div class="actions" id="botones">
+
+        <button class="btn true" onclick="responder(true)">
+            ✅ Verdadero
+        </button>
+
+        <button class="btn false" onclick="responder(false)">
+            ❌ Falso
+        </button>
+
+    </div>
+
+    <div class="feedback" id="resultado"></div>
 
     <!-- FINAL -->
+
     <div class="final" id="final">
+
         <h2>🎉 Juego terminado</h2>
+
         <p id="mensajeFinal"></p>
-        <div class="botones">
-            <button class="compartir" onclick="compartirWhatsApp()">📲 Compartir resultado</button>
-            <button class="invitar" onclick="invitarAmigo()">🚀 Invitar amigo</button>
-            <button class="reiniciar" onclick="location.reload()">🔄 Jugar otra vez</button>
+
+        <div class="final-actions">
+
+            <button class="btn share"
+            onclick="compartirWhatsApp()">
+                📲 Compartir
+            </button>
+
+            <button class="btn invite"
+            onclick="invitarAmigo()">
+                🚀 Invitar
+            </button>
+
+            <button class="btn restart"
+            onclick="location.reload()">
+                🔄 Reiniciar
+            </button>
+
         </div>
+
     </div>
 
-    <footer>Semana 3 | Docente UTEL | Dr. Armando Maravilla</footer>
+    <div class="footer">
+        Semana 3 | Docente UTEL | Dr. Armando Maravilla
+    </div>
+
 </div>
 
 <script>
-/* PREGUNTAS */
+
 const preguntas = [
-{texto:"La sociología estudia los fenómenos sociales.",respuesta:true,explicacion:"La sociología sí estudia los fenómenos sociales y el comportamiento humano."},
-{texto:"El análisis cronológico estudia relaciones entre amigos.",respuesta:false,explicacion:"El análisis cronológico estudia hechos a través del tiempo."},
-{texto:"El análisis sociométrico estudia relaciones dentro de un grupo.",respuesta:true,explicacion:"Este método analiza relaciones e interacciones sociales."},
-{texto:"El análisis de ruptura estudia cambios históricos importantes.",respuesta:true,explicacion:"Analiza cambios profundos que transforman la sociedad."},
-{texto:"Las redes sociales no influyen en la opinión pública.",respuesta:false,explicacion:"Las redes sociales sí pueden influir en la opinión pública."}
+
+{
+texto:"La sociología estudia los fenómenos sociales.",
+respuesta:true,
+explicacion:"La sociología analiza los fenómenos sociales y el comportamiento humano."
+},
+
+{
+texto:"El análisis cronológico estudia relaciones entre amigos.",
+respuesta:false,
+explicacion:"El análisis cronológico estudia hechos y cambios a través del tiempo."
+},
+
+{
+texto:"El análisis sociométrico estudia relaciones dentro de un grupo.",
+respuesta:true,
+explicacion:"Este método analiza relaciones, interacción y liderazgo social."
+},
+
+{
+texto:"El análisis de ruptura estudia cambios históricos importantes.",
+respuesta:true,
+explicacion:"Analiza transformaciones profundas que cambian la sociedad."
+},
+
+{
+texto:"Las redes sociales no influyen en la opinión pública.",
+respuesta:false,
+explicacion:"Las redes sociales sí pueden influir en la opinión pública."
+}
+
 ];
 
-let actual=0; 
-let puntos=0;
+let actual = 0;
+let puntos = 0;
 
-/* CARGAR PREGUNTA */
 function cargarPregunta(){
-    document.getElementById("pregunta").innerHTML=preguntas[actual].texto;
-    document.getElementById("contador").innerHTML="Pregunta "+(actual+1)+" de "+preguntas.length;
-    document.getElementById("resultado").innerHTML="";
+
+    document.getElementById("pregunta").innerHTML =
+    preguntas[actual].texto;
+
+    document.getElementById("contador").innerHTML =
+    "Pregunta " + (actual + 1) + " de " + preguntas.length;
+
+    document.getElementById("resultado").innerHTML = "";
+
 }
 
-/* RESPONDER */
 function responder(opcion){
-    const correcta=preguntas[actual].respuesta;
-    if(opcion===correcta){puntos++;}
-    document.getElementById("score").innerHTML=puntos;
-    document.getElementById("resultado").innerHTML=`
-        <div class="caja-explicacion">
-            ${preguntas[actual].explicacion}<br>
-            <button class="btn-continuar" onclick="continuar()">➡️ Continuar</button>
-        </div>`;
-    document.querySelector(".verdadero").disabled=true;
-    document.querySelector(".falso").disabled=true;
+
+    const correcta = preguntas[actual].respuesta;
+
+    if(opcion === correcta){
+        puntos++;
+    }
+
+    document.getElementById("score").innerHTML = puntos;
+
+    let estado =
+    opcion === correcta ? "✅ Correcto" : "❌ Incorrecto";
+
+    document.getElementById("resultado").innerHTML = `
+
+        <div class="feedback-box">
+
+            <div class="feedback-title">
+                ${estado}
+            </div>
+
+            ${preguntas[actual].explicacion}
+
+            <br>
+
+            <button class="next-btn"
+            onclick="continuar()">
+                Continuar →
+            </button>
+
+        </div>
+
+    `;
+
+    document.querySelector(".true").disabled = true;
+    document.querySelector(".false").disabled = true;
+
 }
 
-/* CONTINUAR */
 function continuar(){
+
     actual++;
-    document.querySelector(".verdadero").disabled=false;
-    document.querySelector(".falso").disabled=false;
-    if(actual<preguntas.length){cargarPregunta();}
-    else{finalizarJuego();}
+
+    document.querySelector(".true").disabled = false;
+    document.querySelector(".false").disabled = false;
+
+    if(actual < preguntas.length){
+
+        cargarPregunta();
+
+    }else{
+
+        finalizarJuego();
+
+    }
+
 }
 
-/* FINALIZAR */
 function finalizarJuego(){
-    document.getElementById("pregunta").style.display="none";
-    document.getElementById("botones").style.display="none";
-    document.getElementById("resultado").innerHTML="";
-    document.getElementById("contador").innerHTML="Finalizado";
-    let mensaje="";
-    if(puntos==5){mensaje="🏆 ¡Excelente! Obtuviste un score perfecto de "+puntos+"/5";}
-    else if(puntos>=3){mensaje="👏 ¡Muy bien! Tu score fue de "+puntos+"/5";}
-    else{mensaje="💡 Puedes volver a intentarlo. Score: "+puntos+"/5";}
-    document.get
+
+    document.getElementById("questionBox").style.display =
+    "none";
+
+    document.getElementById("botones").style.display =
+    "none";
+
+    document.getElementById("resultado").style.display =
+    "none";
+
+    document.getElementById("contador").innerHTML =
+    "Finalizado";
+
+    let mensaje = "";
+
+    if(puntos == 5){
+
+        mensaje =
+        "🏆 Excelente trabajo. Score perfecto: " +
+        puntos + "/5";
+
+    }else if(puntos >=3){
+
+        mensaje =
+        "👏 Buen resultado. Score obtenido: " +
+        puntos + "/5";
+
+    }else{
+
+        mensaje =
+        "💡 Puedes volver a intentarlo. Score: " +
+        puntos + "/5";
+
+    }
+
+    document.getElementById("mensajeFinal").innerHTML =
+    mensaje;
+
+    document.getElementById("final").style.display =
+    "block";
+
+}
+
+function compartirWhatsApp(){
+
+    const texto =
+    "🎮 Obtuve un score de " +
+    puntos +
+    "/5 en Verdadero o Falso Social 📚";
+
+    const url =
+    "https://wa.me/?text=" +
+    encodeURIComponent(texto);
+
+    window.open(url,"_blank");
+
+}
+
+function invitarAmigo(){
+
+    const texto =
+    "🚀 Te invito a jugar Verdadero o Falso Social 🎮";
+
+    const url =
+    "https://wa.me/?text=" +
+    encodeURIComponent(texto);
+
+    window.open(url,"_blank");
+
+}
+
+cargarPregunta();
+
+</script>
+
+</body>
+</html>
